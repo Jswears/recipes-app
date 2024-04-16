@@ -148,6 +148,8 @@ describe('SearchBarComponent', () => {
     expect(queryByText('Error: Search failed')).toBeNull();
     debug();
   });
+
+  // Test when the search prop changes
   it('updates display when search prop changes', () => {
     const {getByTestId, rerender} = render(
       <SearchBarComponent search="" setSearch={setSearch} />,

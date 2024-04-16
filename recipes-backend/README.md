@@ -1,73 +1,96 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Backend Documentation for Recipe Search App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+The backend serves as a RESTful API, primarily handling `getRecipes` requests from the MongoDB database to fetch and return recipes data to the frontend.
 
-## Description
+## Environment Setup
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Prerequisites
 
-## Installation
+- Node.js (v18 or higher)
+- MongoDB
+- npm
 
-```bash
-$ npm install
+### Installation Steps
+
+1. **Clone the repository** and navigate to the backend directory.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+## Running the Application
+
+1. **Local MongoDB Instance**:
+   Ensure MongoDB is running locally on `localhost:27017`.
+2. **Start the server**:
+   - For development:
+     ```bash
+     npm run start:dev
+     ```
+   - For production:
+     ```bash
+     npm run start
+     ```
+
+## Database Setup
+
+### MongoDB Connection
+
+- The application connects to a local MongoDB instance. Ensure MongoDB is running on the default port `27017`.
+
+### Database Schema
+
+The `Recipe` schema is defined using NestJS Mongoose decorators:
+
+```typescript
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+
+@Schema()
+export class Recipe {
+  @Prop({ required: true })
+  title: string;
+
+  @Prop({ required: true })
+  servings: number;
+
+  @Prop({ required: true })
+  imageUrl: string;
+
+  @Prop({ required: true })
+  ingredients: string[];
+
+  @Prop({ required: true })
+  preparation: string;
+
+  @Prop()
+  createdAt: Date;
+
+  @Prop()
+  updatedAt: Date;
+}
 ```
 
-## Running the app
+## Testing
+
+**Important Note**
+
+Database Connection: The tests require an active connection to MongoDB, as they perform data retrieval and manipulation which are critical to validating the application's functionality.
+
+### Configuration
+
+Testing is set up using Jest and Supertest for end-to-end testing of the API.
+
+### Running Tests
+
+Execute the tests with the following command:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run test:e2e
 ```
 
-## Test
+### Test Examples
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- **GET /recipes**: This test verifies that the `/recipes` endpoint returns an array of recipes and checks the structure of the returned data.
+- **Error Handling**: Tests the API's ability to handle errors gracefully and return appropriate error messages.

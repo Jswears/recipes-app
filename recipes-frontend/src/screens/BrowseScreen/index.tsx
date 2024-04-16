@@ -10,7 +10,7 @@ import {Recipe} from '../../types/recipe-types';
 import {getRecipes} from '../../api/RecipesApi';
 import {searchRecipesWithRanking} from '../../utils/recipeUtils';
 
-const RecipesScreen = () => {
+const BrowseScreen = () => {
   const [search, setSearch] = useState('');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
@@ -57,4 +57,4 @@ const RecipesScreen = () => {
   );
 };
 
-export default RecipesScreen;
+export default BrowseScreen;
