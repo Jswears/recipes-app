@@ -24,7 +24,7 @@ This React Native application provides a simple recipe search functionality. Use
 
 ### Starting the Application
 
-1. **Start the backend**: Follow the instructions provided [here](link-to-backend-instructions) to get the backend running.
+1. **Start the backend**: Follow the instructions provided [here](https://github.com/Jswears/recipes-app/tree/main/recipes-backend) to get the backend running.
 2. **Start the React Native server**:
    ```bash
    npm run start
