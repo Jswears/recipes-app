@@ -11,4 +11,14 @@ const getRecipes = async () => {
   }
 };
 
-export {getRecipes};
+const getRecipeById = async (id: string) => {
+  try {
+    const response = await axiosInstance.get(`recipes/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching recipe by id', error);
+    throw error;
+  }
+};
+
+export {getRecipes, getRecipeById};

@@ -2,9 +2,14 @@ import React from 'react';
 import {render} from '@testing-library/react-native';
 import RecipeCardComponent from '../src/components/RecipeCard/RecipeCardComponent';
 import '@testing-library/jest-native/extend-expect';
+
 describe('RecipeCardComponent', () => {
+  const navigator = {
+    navigate: jest.fn(),
+  };
+
   const recipe = {
-    id: '1',
+    _id: '1',
     title: 'Chocolate Cake',
     servings: 8,
     imageUrl: 'https://example.com/chocolate-cake.jpg',
@@ -13,15 +18,20 @@ describe('RecipeCardComponent', () => {
     createdAt: new Date(),
     updatedAt: new Date(),
   };
-
   // Test the rendering of the recipe card
   it('renders the recipe card correctly', () => {
     const {getByText, getByTestId} = render(
-      <RecipeCardComponent recipe={recipe} fullWidth={false} />,
+      <RecipeCardComponent
+        recipe={recipe}
+        fullWidth={false}
+        navigation={navigator}
+      />,
     );
 
     const titleElement = getByText(recipe.title);
-    const servingsElement = getByText(recipe.servings.toString());
+    const servingsElement = getByText(
+      `Servings: ${recipe.servings.toString()}`,
+    );
     const imageElement = getByTestId('recipe-card-image');
 
     expect(titleElement).toBeTruthy();
@@ -32,7 +42,11 @@ describe('RecipeCardComponent', () => {
   // Test the rendering of the recipe card with full width
   it('renders the recipe card with full width correctly', () => {
     const {getByTestId} = render(
-      <RecipeCardComponent recipe={recipe} fullWidth={true} />,
+      <RecipeCardComponent
+        recipe={recipe}
+        fullWidth={true}
+        navigation={navigator}
+      />,
     );
 
     const containerElement = getByTestId('recipe-card-container');

@@ -18,4 +18,15 @@ export class RecipesService {
       throw new InternalServerErrorException('Failed to retrieve recipes');
     }
   }
+  async getRecipeById(id: string) {
+    try {
+      const recipe = await this.recipeModel.findById(id).exec();
+      if (!recipe) {
+        throw new InternalServerErrorException('Recipe not found');
+      }
+      return recipe;
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to retrieve recipe');
+    }
+  }
 }

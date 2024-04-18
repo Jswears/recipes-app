@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import RecipeCardComponent from '../../components/RecipeCard/RecipeCardComponent';
 import SearchBarComponent from '../../components/SearchBar/SearchBarComponent';
@@ -13,6 +14,7 @@ import {searchRecipesWithRanking} from '../../utils/recipeUtils';
 const BrowseScreen = () => {
   const [search, setSearch] = useState('');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const navigator = useNavigation();
 
   // Fetch the recipes from the API and set the state
   const fetchData = async () => {
@@ -47,9 +49,13 @@ const BrowseScreen = () => {
         <FlatList
           data={filteredRecipes}
           renderItem={({item}) => (
-            <RecipeCardComponent recipe={item} fullWidth={numColumns === 1} />
+            <RecipeCardComponent
+              recipe={item}
+              fullWidth={numColumns === 1}
+              navigation={navigator}
+            />
           )}
-          keyExtractor={(item, index) => `${item.id}-${index}`}
+          keyExtractor={item => `${item._id}`}
           numColumns={2}
         />
       </View>

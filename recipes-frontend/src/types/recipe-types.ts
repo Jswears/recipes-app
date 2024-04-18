@@ -1,5 +1,5 @@
 type Recipe = {
-  id: string;
+  _id: string;
   title: string;
   servings: number;
   imageUrl: string;
@@ -15,6 +15,7 @@ type RecipesApiResponse = {
 type RecipeCardProps = {
   recipe: Recipe;
   fullWidth: boolean;
+  navigation: any;
 };
 
 type RecipeWithScore = Recipe & {score: number};

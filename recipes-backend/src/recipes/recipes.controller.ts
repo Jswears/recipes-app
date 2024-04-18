@@ -7,6 +7,7 @@ import {
   Post,
   UsePipes,
   ValidationPipe,
+  Param,
 } from '@nestjs/common';
 import { RecipesService } from './recipes.service';
 import { CreateRecipeDto } from './dto/recipe.dto';
@@ -31,6 +32,14 @@ export class RecipesController {
         'Unable to fetch recipes',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
+    }
+  }
+  @Get(':id')
+  async getRecipeById(@Param('id') id: string) {
+    try {
+      return await this.recipesService.getRecipeById(id);
+    } catch (error) {
+      throw new HttpException('Recipe not found', HttpStatus.NOT_FOUND);
     }
   }
 }
