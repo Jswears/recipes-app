@@ -29,14 +29,12 @@ describe('RecipeCardComponent', () => {
     );
 
     const titleElement = getByText(recipe.title);
-    const servingsElement = getByText(
-      `Servings: ${recipe.servings.toString()}`,
-    );
+    const servingsElement = getByTestId('recipe-card-servings');
     const imageElement = getByTestId('recipe-card-image');
 
-    expect(titleElement).toBeTruthy();
-    expect(servingsElement).toBeTruthy();
-    expect(imageElement).toBeTruthy();
+    expect(titleElement.props.children).toEqual(recipe.title);
+    expect(servingsElement.props.children[1]).toEqual(recipe.servings);
+    expect(imageElement.props.source.uri).toEqual(recipe.imageUrl);
   });
 
   // Test the rendering of the recipe card with full width

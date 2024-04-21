@@ -35,6 +35,14 @@ jest.mock('@rneui/themed', () => {
   };
 });
 
+jest.mock('@fortawesome/react-native-fontawesome', () => {
+  const React = require('react');
+
+  return {
+    FontAwesomeIcon: jest.fn().mockImplementation(() => null),
+  };
+});
+
 describe('SearchBarComponent', () => {
   // Mock the setSearch function
   let setSearch: jest.Mock;

@@ -1,4 +1,4 @@
-import {Recipe} from '../types/recipe-types';
+import {Recipe} from '../types/recipeTypes';
 
 const searchRecipesWithRanking = (recipes: Recipe[], query: string) => {
   const lowerCaseQuery = query.toLowerCase();

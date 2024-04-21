@@ -7,7 +7,7 @@ import SearchBarComponent from '../../components/SearchBar/SearchBarComponent';
 
 import styles from './styles';
 
-import {Recipe} from '../../types/recipe-types';
+import {Recipe} from '../../types/recipeTypes';
 import {getRecipes} from '../../api/RecipesApi';
 import {searchRecipesWithRanking} from '../../utils/recipeUtils';
 

@@ -1,7 +1,7 @@
 import {getRecipes, getRecipeById} from '../src/api/RecipesApi';
 import axiosInstance from '../src/api/ApiService';
 import {AxiosResponse} from 'axios';
-import {RecipesApiResponse} from '../src/types/recipe-types';
+import {RecipesApiResponse} from '../src/types/recipeTypes';
 
 // Mock the axiosInstance
 jest.mock('../src/api/ApiService');

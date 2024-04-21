@@ -22,9 +22,25 @@ This React Native application provides a simple recipe search functionality. Use
 3. **Set up the Android emulator**:
    Ensure that the Android SDK is installed and properly configured.
 
+### Configuration Options
+
+- **Using Mock Data**:
+  To use local mock data instead of connecting to MongoDB, create a `.env` file in the root of the project and add the following variables:
+
+  ```plaintext
+  MOCK_API=true
+  API_URL=http://10.0.2.2:3000
+  ```
+
+  Set `MOCK_API` to `true` to use the mock data from the `apiMocks` folder. If you prefer to use MongoDB, set `MOCK_API` to `false`.
+
+- **Connecting to MongoDB**:
+  If you choose not to use mock data, ensure `MOCK_API` is set to `false` in your `.env` file and use the `API_URL` to configure the connection to your local MongoDB instance.
+
 ### Starting the Application
 
 1. **Start the backend**: Follow the instructions provided [here](https://github.com/Jswears/recipes-app/tree/main/recipes-backend) to get the backend running.
+
 2. **Start the React Native server**:
    ```bash
    npm run start
@@ -71,3 +87,5 @@ npm test <test-name>
   - Initial rendering and UI element tests
   - Input functionality tests (typing, clearing, handling special characters)
   - Accessibility and error handling tests
+
+This documentation ensures that developers have the flexibility to either connect to a MongoDB backend or use local mock data for development and testing.

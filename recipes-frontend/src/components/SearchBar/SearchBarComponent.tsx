@@ -1,10 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {SearchBar, Icon} from '@rneui/themed';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
 
 import styles from './styles';
 
-import {SearchBarComponentProps} from './types';
+import {SearchBarComponentProps} from '../../types/searchbarTypes';
 
 export const SearchBarComponent: React.FunctionComponent<
   SearchBarComponentProps
@@ -22,12 +24,22 @@ export const SearchBarComponent: React.FunctionComponent<
         testID="search-bar-container"
         placeholder="Search by name or ingredient..."
         onChangeText={updateSearch}
-        onClear={() => setSearch('')}
-        lightTheme
-        round
-        searchIcon={<Icon name="search" size={24} color="black" />}
+        onClear={() => {
+          setSearch('');
+        }}
+        searchIcon={
+          <TouchableOpacity>
+            <FontAwesomeIcon icon={faSearch} size={20} color="#888" />
+          </TouchableOpacity>
+        }
+        clearIcon={
+          <TouchableOpacity onPress={() => setSearch('')}>
+            <FontAwesomeIcon icon={faXmark} size={20} color="#888" />
+          </TouchableOpacity>
+        }
         autoCorrect={false}
         value={search}
+        placeholderTextColor={'#888'}
         containerStyle={styles.container}
         inputContainerStyle={styles.inputContainer}
         leftIconContainerStyle={styles.leftIconContainer}

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Image, ScrollView, StyleSheet} from 'react-native';
 import {getRecipeById} from '../../api/RecipesApi';
 import styles from './styles';
-import {Recipe} from '../../types/recipe-types';
+import {Recipe} from '../../types/recipeTypes';
 
 const RecipeDetailsScreen = ({route}: {route: any}) => {
   const {recipeId} = route.params;
