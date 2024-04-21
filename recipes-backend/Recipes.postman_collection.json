@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "fa0cfdda-afa9-455c-8e61-d46ab07bab95",
+		"name": "Recipes",
+		"description": "# Recipe Search App API Documentation\n\n## Overview\n\nThe Recipe Search App's backend API serves as the connection between the frontend application and the MongoDB database, facilitating the creation, retrieval, and specific viewing of recipes.\n\n## Base URL\n\nThe base URL for all API requests is configured as:\n\n```\nhttp://<API_URL>:3000\n\n ```\n\n_Replace_ _with the actual server address (e.g.,_ `_localhost_` _for development or a specific IP for production)._\n\n## API Endpoints\n\n### **1\\. Create Recipe**\n\n#### POST `/recipes`\n\nCreates a new recipe in the database.\n\n**Request Body:**\n\n``` json\n{\n  \"title\": \"New Recipe\",\n  \"servings\": 4,\n  \"imageUrl\": \"http://example.com/image.jpg\",\n  \"ingredients\": [\n    \"Ingredient 1\",\n    \"Ingredient 2\"\n  ],\n  \"preparation\": \"Step by step preparation instructions.\"\n}\n\n ```\n\n**Successful Response:**\n\n``` json\n{\n  \"_id\": \"newlyGeneratedRecipeId\",\n  \"title\": \"New Recipe\",\n  ...\n}\n\n ```\n\n**Error Response:**\n\n``` json\n{\n  \"status\": \"error\",\n  \"message\": \"Error message depending on the issue encountered\"\n}\n\n ```\n\n### **2\\. Get Recipes**\n\n#### GET `/recipes`\n\nFetches all recipes stored in the database.\n\n**Successful Response:**\n\n``` json\n[\n    {\n        \"_id\": \"66192ea163d493ad175c6d1b\",\n        \"title\": \"Creamy Tomato Soup\",\n        \"servings\": 4,\n        \"imageUrl\": \"https://www.saltandlavender.com/wp-content/uploads/2022/09/easy-tomato-soup-9.jpg\",\n        \"ingredients\": [\n            \"4 cups fresh tomatoes, chopped\",\n            \"1 onion, chopped\",\n            \"2 garlic cloves, minced\",\n            \"2 cups vegetable broth\",\n            \"1/2 cup heavy cream\",\n            \"Salt and pepper to taste\"\n        ],\n        \"preparation\": \"Start by sautéing the onions and garlic in a large pot...\"\n    },\n    ...\n]\n\n ```\n\n**Error Response:**\n\n``` json\n{\n  \"status\": \"error\",\n  \"message\": \"Error message\"\n}\n\n ```\n\n### **3\\. Get Recipe by ID**\n\n#### GET `/recipes/{id}`\n\nRetrieves a specific recipe by its unique identifier.\n\n**URL Parameters:**\n\n- `id` (required): The unique identifier of the recipe.\n    \n\n**Successful Response:**\n\n``` json\n{\n    \"_id\": \"66192ea163d493ad175c6d1b\",\n    \"title\": \"Creamy Tomato Soup\",\n    ...\n}\n\n ```\n\n**Error Response:**\n\n``` json\n{\n    \"statusCode\": 404,\n    \"message\": \"Recipe not found\"\n}\n\n ```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34141168"
+	},
+	"item": [
+		{
+			"name": "createRecipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/recipes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipes"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": [
+				{
+					"name": "createRecipe - 201",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"New Recipe\",\r\n    \"servings\": 4,\r\n    \"imageUrl\": \"http://example.com/image.jpg\",\r\n    \"ingredients\": [\r\n        \"Ingredient 1\",\r\n        \"Ingredient 2\"\r\n    ],\r\n    \"preparation\": \"Detailed preparation steps.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/recipes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "208"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d0-+4wvsnOt1cboqkmNRlgmLiYEEFU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 21 Apr 2024 21:17:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"New Recipe\",\n    \"servings\": 4,\n    \"imageUrl\": \"http://example.com/image.jpg\",\n    \"ingredients\": [\n        \"Ingredient 1\",\n        \"Ingredient 2\"\n    ],\n    \"preparation\": \"Detailed preparation steps.\",\n    \"_id\": \"66258255dba2357fdef2be45\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "getRecipes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/recipes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipes"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "getRecipeById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/recipes/66192ea163d493ad175c6d1b",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipes",
+						"66192ea163d493ad175c6d1b"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getRecipeById - 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recipes/66192ea163d493ad175c6d1b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recipes",
+								"66192ea163d493ad175c6d1b"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "729"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2d9-9jihJWRLpCBQYeosvgZMG90ofKU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 21 Apr 2024 21:14:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"66192ea163d493ad175c6d1b\",\n    \"title\": \"Creamy Tomato Soup\",\n    \"servings\": 4,\n    \"imageUrl\": \"https://www.saltandlavender.com/wp-content/uploads/2022/09/easy-tomato-soup-9.jpg\",\n    \"ingredients\": [\n        \"4 cups fresh tomatoes, chopped\",\n        \"1 onion, chopped\",\n        \"2 garlic cloves, minced\",\n        \"2 cups vegetable broth\",\n        \"1/2 cup heavy cream\",\n        \"Salt and pepper to taste\"\n    ],\n    \"preparation\": \"Start by sautéing the onions and garlic in a large pot over medium heat until they are translucent. Add the chopped tomatoes and vegetable broth, then bring the mixture to a boil. Reduce heat and simmer for 20 minutes. Blend the soup in batches until smooth, return to the pot, and stir in the heavy cream. Season with salt and pepper. Heat through and serve warm.\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "getRecipeById - 404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/recipes/66192ea163d493ad175c6d1ba",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recipes",
+								"66192ea163d493ad175c6d1ba"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-AX3sbLS/ZSHZTZDm0BTcVkvFo/s\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 21 Apr 2024 21:14:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"Recipe not found\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		}
+	]
+}

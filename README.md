@@ -1,12 +1,8 @@
-Here's a README template for the main folder of your monorepo, `recipes-app`, which includes both the `recipes-backend` and `recipes-frontend` subdirectories. This README will provide an overview of the entire application, linking to the detailed documentation for each part of the project.
-
----
-
 # Recipe Search App
 
 ## Overview
 
-The Recipe Search App is a full-stack application designed to provide a simple and interactive way to search and view recipes. This monorepo contains both the frontend and backend components of the application. The frontend is built with React Native, offering a mobile interface, while the backend is a RESTful API powered by Node.js and MongoDB.
+The Recipe Search App is a full-stack application designed to provide a simple and interactive way to search and view recipes. This monorepo contains both the frontend and backend components of the application. The frontend is built with React Native, offering a mobile interface, while the backend is a RESTful API powered by Nest.js and MongoDB.
 
 ## Structure
 
@@ -96,13 +92,6 @@ npm test           # Runs all frontend tests
 
 For more details on how each part of the application is designed, how to interact with the API, and how to extend the functionality, refer to the README files in each subdirectory:
 
+- [Postman Collection](recipes-backend/Recipes.postman_collection.json)
 - [Backend Documentation](recipes-backend/README.md)
 - [Frontend Documentation](recipes-frontend/README.md)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit pull requests or open issues to discuss proposed changes or enhancements.
-
----
-
-This README provides a central guide for setting up and running the entire application, with links to detailed documentation for both the backend and frontend parts of the project. Adjust paths and URLs as necessary based on your actual repository structure and URLs.
