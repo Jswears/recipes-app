@@ -56,9 +56,6 @@ This React Native application provides a simple recipe search functionality. Use
   You can find your local IP address by running `ipconfig` on Windows or `ifconfig` on macOS/Linux. Use the IPv4 address.
   You also should remove or comment out the `API_URL` variable.
 
-- **If fetching fails it uses mockData**:
-  If the application fails to fetch data from the backend, it will automatically switch to using the mock data.
-
 - **Default local backend port**:
   The default local backend port is `3000`.
 - **Running on iOS**:

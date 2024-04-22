@@ -1,0 +1,28 @@
+# Docker Compose Configuration
+# visit https://docs.docker.com/compose/
+
+version: '4.29.0'
+services:
+  # app service for your backend
+  app:
+    container_name: backend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_NAME: recipes
+      DATABASE_USER: # DATABASE_USER
+      DATABASE_PASS: # DATABASE_PASS
+      DATABASE_URI: https://localhost:4000
+    ports:
+      - '4000:4000'
+    depends_on:
+      - database
+
+  # start the mongodb service as container
+  database:
+    image: mongo:7.0.8
+    container_name: mongodb
+    restart: always
+    ports:
+      - '27017:27017'
