@@ -11,9 +11,7 @@ services:
       dockerfile: Dockerfile
     environment:
       DATABASE_NAME: recipes
-      DATABASE_USER: # DATABASE_USER
-      DATABASE_PASS: # DATABASE_PASS
-      DATABASE_URI: https://localhost:4000
+      DATABASE_URI: mongodb://database:27017
     ports:
       - '4000:4000'
     depends_on:
