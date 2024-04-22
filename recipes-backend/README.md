@@ -32,6 +32,8 @@ For those who prefer to use Docker for managing applications, you can easily run
 
 Before you start, make sure you have Docker and Docker Compose installed on your system. For installation instructions, visit [Docker's official documentation](https://docs.docker.com/get-docker/).
 
+Install Docker Compose separately if it's not included in your Docker installation. You can find instructions for installing Docker Compose [here](https://docs.docker.com/compose/migrate/).
+
 ### Configuration
 
 You need to set up a few environment variables in the Docker Compose file to connect to MongoDB properly. You may also need to add credentials if your MongoDB setup requires authentication:
