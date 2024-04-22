@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Recipe } from '../schemas/Recipe.schema';
-import mockRecipesData from 'src/mockData/mockRecipes';
+import mockRecipesData from '../mockData/mockRecipes';
 
 @Injectable()
 export class SeederService {
@@ -12,7 +12,6 @@ export class SeederService {
   async seedDatabase() {
     console.log('Checking existing recipes in the database...');
     const count = await this.recipeModel.countDocuments();
-    console.log(`Found ${count} recipes.`);
 
     if (count === 0) {
       console.log('No recipes found, seeding data...');
@@ -26,8 +25,6 @@ export class SeederService {
       console.log(
         'Database already contains recipes, not seeding additional data.',
       );
-      const sampleRecipe = await this.recipeModel.findOne().exec();
-      console.log('Sample recipe from database:', sampleRecipe);
     }
   }
 }
