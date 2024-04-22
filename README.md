@@ -68,7 +68,7 @@ Ensure MongoDB is running locally on `localhost:27017`. Start the backend server
 
 ```bash
 
-npm  run  start:dev  # For development
+npm  run  dev  # For development
 
 # or
 
