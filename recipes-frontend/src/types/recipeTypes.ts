@@ -5,8 +5,8 @@ type Recipe = {
   imageUrl: string;
   ingredients: string[];
   preparation: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 type RecipesApiResponse = {

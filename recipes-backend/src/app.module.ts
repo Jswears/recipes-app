@@ -4,7 +4,9 @@ import { RecipesModule } from './recipes/recipes.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/recipe-app'),
+    MongooseModule.forRoot(
+      process.env.MONGODB_URI || 'mongodb://localhost:27017/recipe-app',
+    ),
     RecipesModule,
   ],
   controllers: [],

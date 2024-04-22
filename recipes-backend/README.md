@@ -22,8 +22,19 @@ The backend serves as a RESTful API, primarily handling `getRecipes` requests fr
 
 ## Running the Application
 
-1. **Local MongoDB Instance**:
-   Ensure MongoDB is running locally on `localhost:27017`.
+1. **Set up the environment**:
+
+   - Create a `.env` file in the root of the project.
+   - Add the following variables to the `.env` file:
+     ```plaintext
+     PORT=<port>
+     MONGODB_URI=<connection_string> example: mongodb://localhost:27017/recipes
+     ```
+     - `PORT`: The port on which the server will run.
+     - `MONGODB_URI`: The connection string for the MongoDB database.
+       the default port is `3000`.
+       the default connection string is `mongodb://localhost:27017/recipe-app`.
+
 2. **Start the server**:
    - For development:
      ```bash
@@ -38,7 +49,7 @@ The backend serves as a RESTful API, primarily handling `getRecipes` requests fr
 
 ### MongoDB Connection
 
-- The application connects to a local MongoDB instance. Ensure MongoDB is running on the default port `27017`.
+- The application connects to a local MongoDB instance. Ensure MongoDB is running on the default port `27017` or you added port.
 
 ### Database Schema
 

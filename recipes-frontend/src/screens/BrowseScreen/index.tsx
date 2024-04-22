@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import mockRecipes from '../../apiMocks/mockRecipes.json';
 
 import RecipeCardComponent from '../../components/RecipeCard/RecipeCardComponent';
 import SearchBarComponent from '../../components/SearchBar/SearchBarComponent';
@@ -22,13 +23,14 @@ const BrowseScreen = () => {
       const data = await getRecipes();
       setRecipes(data);
     } catch (error) {
-      console.error('Error fetching recipes', error);
+      console.error('Error fetching recipes, using mockRecipes', error);
+      setRecipes(mockRecipes);
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [getRecipes]);
 
   // Filter the recipes based on the search text
   const filteredRecipes = searchRecipesWithRanking(recipes, search);

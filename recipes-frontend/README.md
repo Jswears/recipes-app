@@ -28,14 +28,47 @@ This React Native application provides a simple recipe search functionality. Use
   To use local mock data instead of connecting to MongoDB, create a `.env` file in the root of the project and add the following variables:
 
   ```plaintext
+  API_URL=http://10.0.2.2:<local_backend_port>
   MOCK_API=true
-  API_URL=http://10.0.2.2:3000
   ```
 
   Set `MOCK_API` to `true` to use the mock data from the `apiMocks` folder. If you prefer to use MongoDB, set `MOCK_API` to `false`.
 
 - **Connecting to MongoDB**:
   If you choose not to use mock data, ensure `MOCK_API` is set to `false` in your `.env` file and use the `API_URL` to configure the connection to your local MongoDB instance.
+
+- **Connecting to MongoDB if Using Android Emulator**:
+  If you are using an Android emulator to run the application, you will need to update the `API_URL` in the `.env` file to point to `
+
+  ```plaintext
+
+  API_URL=http://API_URL=http://10.0.2.2:<local_backend_port>
+
+  ```
+
+- **Connecting to MongoDB if using Device**:
+  If you are using a physical device to run the application, you will need to update the `API_URL_DEVICE` in the `.env` file to point to your local IP address. For example:
+
+  ```plaintext
+  API_URL_DEVICE=http://192.x.x.x:<local_backend_port>
+  ```
+
+  You can find your local IP address by running `ipconfig` on Windows or `ifconfig` on macOS/Linux. Use the IPv4 address.
+  You also should remove or comment out the `API_URL` variable.
+
+- **If fetching fails it uses mockData**:
+  If the application fails to fetch data from the backend, it will automatically switch to using the mock data.
+
+- **Default local backend port**:
+  The default local backend port is `3000`.
+- **Running on iOS**:
+  To run the application on iOS, use the following command:
+
+  ```bash
+  npm run ios
+  ```
+
+  Note: Ensure you have Xcode installed on your machine.
 
 ### Starting the Application
 
@@ -57,6 +90,9 @@ This React Native application provides a simple recipe search functionality. Use
 - **Major External Libraries**:
   - `@react-navigation/native-stack` for navigation
   - `@rneui/base` and `@rneui/themed` for UI components
+  - `axios` for API requests
+  - `react-native-dotenv` for environment variables
+  - `font-awesome` for icons
 
 ## Testing
 

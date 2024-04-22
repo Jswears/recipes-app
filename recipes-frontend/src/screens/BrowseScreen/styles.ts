@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   browseText: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'black',
   },
 });
 
